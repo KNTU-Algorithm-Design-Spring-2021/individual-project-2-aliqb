@@ -47,18 +47,15 @@ class WordWrap
 
 		int []p =new int[n];
 	
-		for (int i = 0; i < n; i++)
-		{
+		for (int i = 0; i < n; i++){
 			extras[i][i] = this.m - l[i];
 			for (int j = i+1; j < n; j++)
 			extras[i][j] = extras[i][j-1] - l[j] - 1;
 		}
 
 
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = i; j < n; j++)
-			{
+		for (int i = 0; i < n; i++){
+			for (int j = i; j < n; j++){
 				if (extras[i][j] < 0)
 					lc[i][j] = MAX;
 				else if (j == n-1 && extras[i][j] >= 0)
@@ -67,14 +64,9 @@ class WordWrap
 					lc[i][j] = extras[i][j]*extras[i][j]*extras[i][j];
 			}
 		}
-        // System.out.println('g');
-		
-		// c[0] = 0;
-		for (int j = 0; j < n; j++)
-		{
+		for (int j = 0; j < n; j++){
 			c[j] = MAX;
-			for (int i = 0; i <= j; i++)
-			{
+			for (int i = 0; i <= j; i++){
                 int prev;
                 if(i==0){
                     prev = 0;
@@ -82,8 +74,7 @@ class WordWrap
                     prev = c[i-1];
                 }
 				if (prev != MAX && lc[i][j] != MAX &&
-				(prev + lc[i][j] < c[j]))
-				{
+				(prev + lc[i][j] < c[j])){
 					c[j] = prev + lc[i][j];
                     if(prev == 0 ){
                         p[j] = 0;
